@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modelot</title>
+    <link rel="stylesheet" href="asssets/style/reset.css">
+    <link rel="stylesheet" href="asssets/style/style.css">
+</head>
+<body>
+
+    <section class="main">
+        <article class="main-tex">
+            <h1 class="text-title">descubra qual o seu imc</h1>
+            <table >
+                <thead>
+                    <tr>
+                        <th>imc</th>
+                        <th class="rigth">resultado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>menos que 18,5</td>
+                        <td class="rigth">abaixo do peso</td>
+                    </tr>
+                    <tr>
+                        <td>entre 18,8 e 24,9</td>
+                        <td class="rigth">peso normal</td>
+                    </tr>
+                    <tr>
+                        <td>entre 25 e 29,9</td>
+                        <td class="rigth">sobre peso</td>
+                    </tr>
+                    <tr>
+                        <td>entre 30 e 34,9</td>
+                        <td class="rigth">obesidade grau 1</td>
+                    </tr>
+                    <tr>
+                        <td>entre 35 e 39,9</td>
+                        <td class="rigth">obesidade grau 2</td>
+                    </tr>
+                    <tr>
+                        <td>mais do que 40</td>
+                        <td class="rigth">obesidade grau 3</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </article>
+        <form action="" class="form">
+            <label for="tes1">peso</label>
+            <input type="text" name="tes1" id="tes1" class="test1" placeholder="ex: 50">
+            <label for="test2">altura</label>
+            <input type="text" name="test2" id="test2" class="test2" placeholder="ex:1.70">
+            <div class="button-borders">
+                <button class="primary-button" type="submit"> Avaliar 
+                </button>
+            </div>
+        </form>
+        <div class="resultado">
+        </div>
+    </section>
+
+
+    <script src="asssets/js/index.js"></script>
+    
+</body>
+</html>

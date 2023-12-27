@@ -1,34 +1,75 @@
 function Meuscop(){
-    const form = document.querySelector(".form");
-    const resultado = document.querySelector(".resultado")
-    function recebeEventoForm (evento){
-    evento.preventDefault();
-    const peso= form.querySelector(".test1");
-    const altura= form.querySelector(".test2");
-    const pesoNumerico = Number(peso.value.replace(',', '.'));
-    const alturaNumerica = Number(altura.value.replace(',', '.'));
+    const formulario= document.querySelector("form")
+    formulario.addEventListener("submit", function (e){ //assim previnimos que o submit funcione
+        e.preventDefault()
+        const pesodigitado= e.target.querySelector(".test1")
+        const alturadigitado= e.target.querySelector(".test2")
+        const peso = Number(pesodigitado.value)
+        const altura = Number(alturadigitado.value)
+        if(!peso){
+            cresultado("peso invalido", false)
+            return
 
-    let imc = pesoNumerico / (alturaNumerica * alturaNumerica);
-    imc = imc.toFixed(1);
+        }
+        if(!altura){
+            cresultado("altura invalida", false)
+            return
 
-    if (imc <= 18.5) {
-        resultado.innerHTML = `<h2>Resultado:</h2><p>seu imc é ${imc} é voce esta <b>abaixo do peso</b> </p>`;
-    } else if (imc >= 18.9 && imc <= 24.9) {
-        resultado.innerHTML = `<h2>Resultado:</h2><p>seu imc é ${imc} <b>peso normal</b> </p>`;
-    } else if (imc >= 25 && imc <= 29.9) {
-        resultado.innerHTML = `<h2>Resultado:</h2><p>seu imc é ${imc} <b>sobre peso</b> </p>`;
-    } else if (imc >= 30 && imc <= 34.9) {
-        resultado.innerHTML = `<h2>Resultado:</h2><p>seu imc é ${imc}  <b>obesidade grau 1</b></p>`;
-    } else if (imc >= 35 && imc <= 39.9) {
-        resultado.innerHTML = `<h2>Resultado:</h2><p>seu imc é ${imc} <b>obesidade grau 2</b></p>`;
-    } else if (imc >= 40) {
-        resultado.innerHTML = `<h2>Resultado:</h2><p>seu imc é ${imc} <b>obesidade grau 3</b></p>`;
-    } else {
-        resultado.innerHTML = `<h2>ERRO</h2><p>voce nao digitou um numero valido</p>`;
+        }
+        const imc1=imc(peso,altura);
+        const nivelimc= nivel(imc1)
+
+        const msg = `seu imc é ${imc1} e seu nivel é (${nivelimc})`
+        cresultado(msg,true)
+
+
+        function nivel(imc1){
+            const nvl=["abaixo do peso","peso normal",'sobre peso','obesidade grau 1','obesidade grau 2','obesidade grau 3']
+
+            if (imc1 >= 39.9){
+                return nvl[6]
+
+            }if (imc1 >= 34.9){
+                return nvl[5]
+
+            }if (imc1 >= 29.9){
+                return nvl[4]
+
+            }if (imc1 >= 24.9){
+                return nvl[3]
+
+            }if (imc1 >= 18.5){
+                return nvl[2]
+
+            }if (imc1 < 18.5){
+                return nvl[1]
+
+            }
+        }
+    })
+    function imc(peso,altura){
+        const imccall= peso / (altura * altura)
+        return  imccall.toFixed(1)
     }
-}
+    function criatext(){
+        const p= document.createElement("p");
+        return p
+    }
+    function cresultado (msg,isValid){
+        const resultado= document.querySelector(".resultado") 
+        resultado.innerHTML = " "
 
-form.addEventListener("submit", recebeEventoForm);
-}
+        const text =criatext() ;
 
-Meuscop();
+        if(isValid){
+            text.classList.add("god")
+
+        }else{
+            text.classList.add("bad")
+        }
+        text.innerHTML = msg;
+        resultado.appendChild(text)
+    }
+
+}
+Meuscop()

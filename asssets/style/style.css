@@ -170,6 +170,14 @@ th,td{
 b{
     color: white;
 }
+.god{
+    color: green;
+    font-size: 3rem;
+}
+.bad{
+    color: red;
+    font-size: 3rem;
+}
 @media screen and (min-width: 68em) {
     .main{
         width: 40%;
